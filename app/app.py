@@ -143,13 +143,13 @@ st.title('Data Presentation')
 
 @st.cache
 def load_data():
-    df = pd.read_csv('streamlined/app/cleaned_dataframe_with_scores.csv')
+    df = pd.read_csv('app/cleaned_dataframe_with_scores.csv')
     df = df.drop(columns=['Unnamed: 0'])
     return df
 
 @st.cache
 def load_event_data():
-    df = pd.read_csv('streamlined/app/aquila2009_caratteristiche_evento.csv', sep = ';')
+    df = pd.read_csv('app/aquila2009_caratteristiche_evento.csv', sep = ';')
     # df = df.drop(columns=['Unnamed: 0'])
     return df
 
@@ -162,16 +162,16 @@ def load_eq_coords():
 def load_model(model_name='Simple NN'):
     if model_name == 'Simple NN':
         model = SimpleNN(81, 4)
-        model.load_state_dict(torch.load('streamlined/app/Simple NN/simple_nn.pth'))
+        model.load_state_dict(torch.load('app/Simple NN/simple_nn.pth'))
     elif model_name == 'Harmonic Mapper':
         model = MapperNN(81, 4, n_harmonics=10)
-        model.load_state_dict(torch.load('streamlined/app/Harmonic Mapper/10har_mapper_nn.pth'))
+        model.load_state_dict(torch.load('app/Harmonic Mapper/10har_mapper_nn.pth'))
     return model.eval()
 
 @st.cache
 def load_test_data():
-    test_data_x = pd.read_csv('streamlined/app/test_subset_x.csv')
-    test_data_y = pd.read_csv('streamlined/app/test_subset_y.csv')
+    test_data_x = pd.read_csv('app/test_subset_x.csv')
+    test_data_y = pd.read_csv('app/test_subset_y.csv')
     # drom Unnamed: 0
     test_data_x = test_data_x.drop(columns=['Unnamed: 0'])
     test_data_y = test_data_y.drop(columns=['Unnamed: 0'])
@@ -181,7 +181,7 @@ def load_test_data():
 
 @st.cache
 def load_vulnerability_map_and_show(model_name = 'Simple NN'):
-    path = 'streamlined/app/'+model_name+'/vulnerability_map.html'
+    path = 'app/'+model_name+'/vulnerability_map.html'
     with open(path, 'r') as file:
         map_html = file.read()
     return map_html
@@ -244,7 +244,6 @@ def plot_on_map_plotly(grid, min_lat, max_lat, min_lon, max_lon, eq_df, datafram
 
 
 
-
 df = load_data()
 st.write('This is the dataframe')
 st.write(df.head())
@@ -259,12 +258,12 @@ model_names = ['Simple NN', 'Harmonic Mapper']
 model_name = st.selectbox('Model', model_names)
 # model_name = st.sidebar.selectbox('Model', model_names)
 st.write('First we take a look at the performance of the model on the validation dataset')
-st.image('streamlined/app/'+model_name+'/report.png') 
+st.image('app/'+model_name+'/report.png') 
 
 
 st.write('We can see the model structure here, noting that the dataset and model are small enough to pass the whole validation dataset (containing 11628 samples) through the model at once.')
 # open svg file
-with open('streamlined/app/'+model_name+'/model.onnx.svg', 'rb') as f:
+with open('app/'+model_name+'/model.onnx.svg', 'rb') as f:
     svg = f.read()
     # st.write(svg.decode('utf-8'))
     st.image(svg.decode('utf-8'))
@@ -280,7 +279,7 @@ if model_name == 'Simple NN':
 # map_html = load_vulnerability_map_and_show(model_name=model_name) # <----------- Plotly map
 # # Use the Streamlit components to render HTML
 # components.html(map_html, height=500) 
-grid_path = 'streamlined/app/'+model_name+'/vulnerability_grid.npy'
+grid_path = 'app/'+model_name+'/vulnerability_grid.npy'
 grid = np.load(grid_path)
 min_lat = df['Latitude'].min()
 max_lat = df['Latitude'].max()
