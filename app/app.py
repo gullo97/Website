@@ -138,7 +138,7 @@ class MapperNN(nn.Module):
         return x
 
 #%%
-st.title('Data Presentation')
+
 # st.write('This app does things')
 
 @st.cache
@@ -242,7 +242,7 @@ def plot_on_map_plotly(grid, min_lat, max_lat, min_lon, max_lon, eq_df, datafram
 
     return fig
 
-
+st.title('Data Presentation')
 
 df = load_data()
 st.write('This is the dataframe')
