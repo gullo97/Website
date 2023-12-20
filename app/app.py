@@ -143,7 +143,7 @@ class MapperNN(nn.Module):
 
 @st.cache
 def load_data():
-    df = pd.read_csv('app/cleaned_dataframe_with_scores.csv')
+    df = pd.read_csv('app/sampled_vulnerability_dataframe.csv')
     df = df.drop(columns=['Unnamed: 0'])
     return df
 
@@ -258,6 +258,7 @@ st.title('Data Presentation')
 df = load_data()
 st.write('This is the dataframe')
 st.write(df.head())
+st.write(len(df))
 
 event_df = load_event_data()
 st.write('These are the event characteristics')
