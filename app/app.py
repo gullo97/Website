@@ -298,7 +298,8 @@ min_lon = df['Longitude'].min()
 max_lon = df['Longitude'].max()
 eq_df = event_df[['lat_epicentro', 'lon_epicentro', 'magnitudo_mw']]
 fig = plot_on_map_plotly(grid, min_lat, max_lat, min_lon, max_lon, eq_df, df, n_samples=1000, zoom_factor=8, zoom_center=(13.4,42.3))
-st.container.write(fig)
+c1 = st.container()
+c1.write(fig)
 
 # ########################################################
 # # Assuming 'fig' is your Plotly figure object
