@@ -361,8 +361,8 @@ for feature in categorical_features:
     selection = pag_col1.selectbox(feature, option_names)
     selections[feature] = feature + ':' + selection
     
-latitude = pag_col1.slider('Latitude', min_value=41.0, max_value=44.0, value=42.34)
-longitude = pag_col1.slider('Longitude', min_value=12.0, max_value=15.0, value=13.38)
+latitude = pag_col2.slider('Latitude', min_value=41.0, max_value=44.0, value=42.34)
+longitude = pag_col2.slider('Longitude', min_value=12.0, max_value=15.0, value=13.38)
 ###########################################################################################
 
 # st.write(selections)
