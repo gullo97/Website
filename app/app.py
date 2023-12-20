@@ -384,9 +384,11 @@ plt.xticks(fontsize=9)
 ax.set_ylabel('Probability')
 # ax.set_xlabel('Damage Level')
 pag_col2.pyplot(fig)
-
 st.title('A-Posteriori Vulnerability Score')
-st.write('The second step is dedicated to evaluating the predictive power of our models and establishing the advantages of our vulnerability scoring method. In particular, we introduce an innovative technique to derive an a-posteriori vulnerability score for each structural feature of the buildings in our dataset. In the following we show how it works: ')
-st.write('Creation of Dummy Buildings: Virtual buildings are created, identical to real ones except for one static feature. For example, simulating all buildings with exactly two floors.')
-st.write('Model Predictions: These dummy buildings are fed into our Neural Network (and random forest) models, which then predict damage, considering the static feature as a key variable.')
-st.write('Derivation of A Posteriori Vulnerability Score: By examining the damage predictions across dummy buildings with the constant feature, we derive an average damage score, representing the vulnerability attributed to that feature (like having two floors).')
+st.write('The second step is dedicated to evaluating the predictive power of our models and establishing the advantages of our vulnerability scoring method. In particular, we introduce an innovative technique to derive an a-posteriori vulnerability score for each structural feature of the buildings in our dataset. In the following we show how it works:')
+
+st.markdown("""
+1. **Creation of Dummy Buildings**: Virtual buildings are created, identical to real ones except for one static feature. For example, simulating all buildings to have exactly two floors.
+2. **Model Predictions**: These dummy buildings are fed into our Neural Network (and Random Forest) models, which then predict damage, considering the static feature as a key variable.
+3. **Derivation of A-Posteriori Vulnerability Score**: By examining the damage predictions across dummy buildings with the constant feature, we derive an average damage score, representing the vulnerability attributed to that feature (like having two floors).
+""", unsafe_allow_html=True)
