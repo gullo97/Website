@@ -168,16 +168,6 @@ def load_model(model_name='Simple NN'):
         model.load_state_dict(torch.load('app/Harmonic Mapper/10har_mapper_nn.pth'))
     return model.eval()
 
-@st.cache
-def load_test_data():
-    test_data_x = pd.read_csv('app/test_subset_x.csv')
-    test_data_y = pd.read_csv('app/test_subset_y.csv')
-    # drom Unnamed: 0
-    test_data_x = test_data_x.drop(columns=['Unnamed: 0'])
-    test_data_y = test_data_y.drop(columns=['Unnamed: 0'])
-    test_data = pd.concat([test_data_x, test_data_y], axis=1)
-    
-    return test_data
 
 @st.cache
 def load_vulnerability_map_and_show(model_name = 'Simple NN'):
@@ -253,7 +243,8 @@ def create_one_hot_from_selections(df, selections, latitude, longitude):
         one_hot[2+i] = geodesic((latitude, longitude), (eq_coords.iloc[i]['Latitude'], eq_coords.iloc[i]['Longitude'])).km
     return one_hot
 
-st.title('Data Presentation')
+st.title('Machine learning for earthquake damage prediction and vulnerability assessment')
+st.write('This app is a demo of the machine learning models developed for the paper "Seismic Vulnerability Assessment at Urban Scale by Means of Machine Learning Techniques" by Guglielmo Ferranti et. al; the paper is currently under review for publication on MDPI Buildings.')
 
 df = load_data()
 st.write('This is the dataframe')
