@@ -143,7 +143,7 @@ class MapperNN(nn.Module):
 
 @st.cache
 def load_data():
-    df = pd.read_csv('app/sampled_vulnerability_dataframe.csv')
+    df = pd.read_csv('app/dataframe.csv')
     df = df.drop(columns=['Unnamed: 0'])
     return df
 
