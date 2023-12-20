@@ -298,8 +298,7 @@ min_lon = df['Longitude'].min()
 max_lon = df['Longitude'].max()
 eq_df = event_df[['lat_epicentro', 'lon_epicentro', 'magnitudo_mw']]
 fig = plot_on_map_plotly(grid, min_lat, max_lat, min_lon, max_lon, eq_df, df, n_samples=1000, zoom_factor=8, zoom_center=(13.4,42.3))
-c1 = st.container()
-c1.write(fig)
+st.write(fig)
 
 # ########################################################
 # # Assuming 'fig' is your Plotly figure object
@@ -329,7 +328,7 @@ c1.write(fig)
 # ########################################################
 
 st.title('Building simulation and vulnerability prediction')
-st.write('Use the feature selection on the left to simulate a building and predict the damage.')
+st.write('Use the feature selection to simulate a building and predict the damage.')
 
 eq_coords = load_eq_coords()
 # st.write(eq_coords)
