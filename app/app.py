@@ -398,6 +398,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 st.write('The following plot shows the A-Posteriori vulnerability score for each feature. The score is normalized to have values between 0 and 1.')
 
-load_image('app/a_posteriori_scores.png')
+scores_image = load_image('app/a_posteriori_scores.png')
+st.image(scores_image)
 
 st.write('Next, ')
