@@ -177,6 +177,10 @@ def load_vulnerability_map_and_show(model_name = 'Simple NN'):
     return map_html
 
 @st.cache
+def load_image(path):
+    return plt.imread(path)
+
+@st.cache
 def plot_on_map_plotly(grid, min_lat, max_lat, min_lon, max_lon, eq_df, dataframe, n_samples=1000, zoom_factor=5, zoom_center=(41.9, 12.5)):
     # Normalize the grid
     normed_grid = (grid - grid.min()) / (grid.max() - grid.min())
@@ -388,7 +392,12 @@ st.title('A-Posteriori Vulnerability Score')
 st.write('The second step is dedicated to evaluating the predictive power of our models and establishing the advantages of our vulnerability scoring method. In particular, we introduce an innovative technique to derive an a-posteriori vulnerability score for each structural feature of the buildings in our dataset. In the following we show how it works:')
 
 st.markdown("""
-1. **Creation of Dummy Buildings**: Virtual buildings are created, identical to real ones except for one static feature. For example, simulating all buildings to have exactly two floors.
+1. **Creation of Dummy Buildings**: A large sample of buildings are created, identical to real ones (including position) except for one static feature of interest. For example, simulating all buildings to have exactly two floors.
 2. **Model Predictions**: These dummy buildings are fed into our Neural Network (and Random Forest) models, which then predict damage, considering the static feature as a key variable.
 3. **Derivation of A-Posteriori Vulnerability Score**: By examining the damage predictions across dummy buildings with the constant feature, we derive an average damage score, representing the vulnerability attributed to that feature (like having two floors).
 """, unsafe_allow_html=True)
+st.write('The following plot shows the A-Posteriori vulnerability score for each feature. The score is normalized to have values between 0 and 1.')
+
+load_image('app/a_posteriori_scores.png')
+
+st.write('Next, ')
