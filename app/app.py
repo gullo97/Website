@@ -245,7 +245,7 @@ def create_one_hot_from_selections(df, selections, latitude, longitude):
 
 st.title('Machine learning for earthquake damage prediction and vulnerability assessment')
 st.write('This app is a demo of the machine learning models developed for the paper "Seismic Vulnerability Assessment at Urban Scale by Means of Machine Learning Techniques" by Guglielmo Ferranti et. al; the paper is currently under review for publication on MDPI Buildings.')
-
+st.write('The study leverages data from the 2009 L\'Aquila earthquake in Italy to train a machine learning model to predict the damage level of a building given its characteristics, position and the earthquake characteristics. The model is at first used to interpolate a vulnerability map tailored to the seismic event and then, using a similar approach, to extrapolate an "A-Posteriori" vulnerability score for each building feature that can, in priciple, be usefull outside of the specific event studied.')
 df = load_data()
 st.write('This is the dataframe')
 st.write(df.head())
