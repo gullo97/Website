@@ -335,8 +335,6 @@ eq_coords = load_eq_coords()
 
 model = load_model(model_name=model_name)
 
-st.sidebar.title('Feature selection for simulation and damage prediction')
-st.sidebar.write('Scroll down on the main page to see the results.')
 
 
 # get names of macro features
