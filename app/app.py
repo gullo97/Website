@@ -293,10 +293,10 @@ if model_name == 'Simple NN':
 # components.html(map_html, height=500) 
 grid_path = 'app/'+model_name+'/vulnerability_grid.npy'
 grid = np.load(grid_path)
-min_lat = 42.2477007
-max_lat = 42.5489193417971
-min_lon = 13.2784113
-max_lon = 13.5607612
+min_lat = 41.7158661414168
+max_lat = 42.7362168
+min_lon = 13.0
+max_lon = 14.2035408
 eq_df = event_df[['lat_epicentro', 'lon_epicentro', 'magnitudo_mw']]
 fig = plot_on_map_plotly(grid, min_lat, max_lat, min_lon, max_lon, eq_df, df, n_samples=1000, zoom_factor=8, zoom_center=(13.4,42.3))
 st.write(fig)
