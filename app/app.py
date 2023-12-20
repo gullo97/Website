@@ -401,4 +401,8 @@ st.write('The following plot shows the A-Posteriori vulnerability score for each
 scores_image = load_image('app/a_posteriori_scores.png')
 st.image(scores_image)
 
-st.write('Next, ')
+st.write('Next, we aim to analyze the correlation between our "a-posteriori" vulnerability score and observed damage. To achieve this, we focus on a subset of 13,678 buildings located within 6 km of the five major epicenters. We compare our continuous a-posteriori vulnerability score with the a-priori one, which categorizes buildings into five levels of vulnerability, scaled from the maximum level A (highest vulnerability) to the minimum level D2 (lowest vulnerability). This analysis is presented through separated graphical representations, due to the different nature (respectively continuous and categorized) of the two vulnerability scores. In the bar chart distributions, the frequency of buildings for each damage level is plotted against both our derived a-posteriori vulnerability score (left) and the a-priori vulnerability one (right), which can be considered as a benchmark. The a-posteriori vulnerability score typically exhibits a continuous distribution that is more closely aligned with the actual damage levels. This alignment is especially pronounced for the extremes of the damage spectrum (Damage Levels D0 and D3), showing our method\'s enhanced capability in differentiating between the most and least vulnerable structures')
+
+distro_image = load_image('app/scores_distribution_comparison.png')
+st.image(distro_image)
+
