@@ -249,7 +249,7 @@ st.write('The study leverages data from the 2009 L\'Aquila earthquake in Italy t
 df = load_data()
 st.write('The dataframe contains a mix of categorical and numerical features. The categorical features are one-hot encoded to give a total of 81 features for each building. Here we report a small sample of the dataframe that originally contains about 60000 samples')
 st.write(df.head())
-st.write('Sample size: ' + str(len(df))
+st.write('Sample size: ' + str(len(df)))
 
 event_df = load_event_data()
 st.write('The data is augmented by precalculating the distance of each building from the main epicenters of the earthquake.')
