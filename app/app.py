@@ -248,7 +248,8 @@ def create_one_hot_from_selections(df, selections, latitude, longitude):
     return one_hot
 
 st.title('Machine learning for earthquake damage prediction and vulnerability assessment')
-st.write('This app is a demo of the machine learning models developed for the paper "Seismic Vulnerability Assessment at Urban Scale by Means of Machine Learning Techniques" by Guglielmo Ferranti et. al; the paper is currently under review for publication on MDPI Buildings.')
+st.write('This app is a demo of the machine learning models developed for the paper "Seismic Vulnerability Assessment at Urban Scale by Means of Machine Learning Techniques" by Guglielmo Ferranti et. al, currently under review for publication on MDPI Buildings. Here, we show the "Simple NN" model used in the paper and build upon that to improve performance and interpretability with the "Harmonic Mapper" model.')
+
 st.write('The study leverages data from the 2009 L\'Aquila earthquake in Italy to train a machine learning model to predict the damage level of a building given its characteristics, position and the earthquake characteristics. The model is at first used to interpolate a vulnerability map tailored to the seismic event and then, using a similar approach, to extrapolate an "A-Posteriori" vulnerability score for each building feature that minimizes its dependency on the specific seismic event and can, in principle, be useful outside of the specific event studied.')
 df = load_data()
 st.write('The dataframe contains a mix of categorical and numerical features. The categorical features are one-hot encoded to give a total of 81 features for each building. Here we report a small sample of the dataframe that originally contains about 60000 samples')
@@ -260,7 +261,7 @@ st.write('The data is augmented by precalculating the distance of each building 
 st.write(event_df.head())
 
 st.title('Model selection and performance')
-st.write('Select a model to see its performance on the validation set, interpolate a vulnerability map and play with damage prediction.')
+st.write('Select a neural network model to see its performance on the validation set, interpolate a vulnerability map and play with damage prediction.')
 model_names = ['Simple NN', 'Harmonic Mapper']
 model_name = st.selectbox('Model', model_names)
 # model_name = st.sidebar.selectbox('Model', model_names)
@@ -406,3 +407,8 @@ st.write('Next, we aim to analyze the correlation between our "a-posteriori" vul
 distro_image = load_image('app/scores_distribution_comparison.png')
 st.image(distro_image)
 
+st.write('In contrast to the previous section, where we focused on buildings within a 6 km radius of any epicenter, let us now explore the impact of varying this maximum distance. By plotting the Spearman and Kendall correlation coefficients as a function of increasing distances from the epicenters, we effectively illustrate the enhanced accuracy of our vulnerability scoring system.')
+corr_image = load_image('app/correlation_vs_distance.png')
+st.image(corr_image)
+
+st.write('Looking at the figure, both the a-priori scores and the derived a-posteriori ones exhibit a predictable correlation decrease with the increases in distance from the epicenter, aligning with the expected lower impact of the earthquake. However, our a-posteriori vulnerability score consistently maintains a notably higher correlation with the damage level, even at large distances. This trend not only underlines the robustness of our approach but also highlights its predictive power in assessing earthquake vulnerability across varying proximities to epicenters.')
