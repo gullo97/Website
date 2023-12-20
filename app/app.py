@@ -242,6 +242,17 @@ def plot_on_map_plotly(grid, min_lat, max_lat, min_lon, max_lon, eq_df, datafram
 
     return fig
 
+def create_one_hot_from_selections(df, selections, latitude, longitude):
+    # create a one-hot encoded vector from the selections
+    one_hot = np.zeros(81)
+    for feature, selection in selections.items():
+        one_hot[df.columns.get_loc(selection)] = 1
+    one_hot[0] = latitude
+    one_hot[1] = longitude
+    for i in range(len(eq_coords)):
+        one_hot[2+i] = geodesic((latitude, longitude), (eq_coords.iloc[i]['Latitude'], eq_coords.iloc[i]['Longitude'])).km
+    return one_hot
+
 st.title('Data Presentation')
 
 df = load_data()
@@ -340,31 +351,27 @@ categorical_features = ['Position in Complex',
     'Isolated Pillars',
     'Construction or Restructuring',
     'Slope Morphology']
+
+pag_col1, pag_col2 = st.columns(2)
+
+#################################### Feature selection ####################################
 selections = {}
 for feature in categorical_features:
     feature_columns = [col for col in df.columns if feature in col]
     # remove string 'feature'+ ' :' from column names
     option_names = [col.split(':')[1] for col in feature_columns]
-    selection = st.sidebar.selectbox(feature, option_names)
+    selection = pag_col1.selectbox(feature, option_names)
     selections[feature] = feature + ':' + selection
     
-latitude = st.sidebar.slider('Latitude', min_value=41.0, max_value=44.0, value=42.34)
-longitude = st.sidebar.slider('Longitude', min_value=12.0, max_value=15.0, value=13.38)
+latitude = pag_col1.slider('Latitude', min_value=41.0, max_value=44.0, value=42.34)
+longitude = pag_col1.slider('Longitude', min_value=12.0, max_value=15.0, value=13.38)
+###########################################################################################
 
 # st.write(selections)
 
-def create_one_hot_from_selections(df, selections, latitude=latitude, longitude=longitude):
-    # create a one-hot encoded vector from the selections
-    one_hot = np.zeros(81)
-    for feature, selection in selections.items():
-        one_hot[df.columns.get_loc(selection)] = 1
-    one_hot[0] = latitude
-    one_hot[1] = longitude
-    for i in range(len(eq_coords)):
-        one_hot[2+i] = geodesic((latitude, longitude), (eq_coords.iloc[i]['Latitude'], eq_coords.iloc[i]['Longitude'])).km
-    return one_hot
 
-one_hot = create_one_hot_from_selections(df, selections)
+
+one_hot = create_one_hot_from_selections(df, selections, latitude, longitude)
 # st.write('This is the one-hot vector for debugging')
 # st.write(one_hot)
 
@@ -383,4 +390,4 @@ ax.bar(['No Damage', 'Light Damage', 'Moderate Damage', 'Severe Damage'], probs[
 plt.xticks(fontsize=9)
 ax.set_ylabel('Probability')
 # ax.set_xlabel('Damage Level')
-st.pyplot(fig)
+pag_col2.pyplot(fig)
