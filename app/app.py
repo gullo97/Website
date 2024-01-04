@@ -253,7 +253,7 @@ st.write('This app is a demo of the machine learning models developed for the pa
 st.write('The study leverages data from the 2009 L\'Aquila earthquake in Italy to train a machine learning model to predict the damage level of a building given its characteristics, position and the earthquake characteristics. The model is at first used to interpolate a vulnerability map tailored to the seismic event and then, using a similar approach, to extrapolate an "A-Posteriori" vulnerability score for each building feature that minimizes its dependency on the specific seismic event and can, in principle, be useful outside of the specific event studied.')
 df = load_data()
 
-st.write('The dataset developed by Eucentre (European Center for Training and Research in Seismic Engineering, http://egeos.eucentre.it/danno_osservato/web/danno_osservato) contains a mix of categorical and numerical features. The categorical features are one-hot encoded to give a total of 81 features for each building. Here we report a synthetic example of the dataset that originally contains about 60000 samples')
+st.write('The dataset developed by Eucentre (European Center for Training and Research in Seismic Engineering, http://egeos.eucentre.it/danno_osservato/web/danno_osservato) contains a mix of categorical and numerical features. It is important to note that the original data is not shown on this app exept in aggregate form in accordance with the terms stated in the website. The categorical features are one-hot encoded to give a total of 81 features for each building. Here we report a synthetic example of the dataset that originally contains about 60000 samples')
 st.write(df.head())
 # st.write('Sample size: ' + str(len(df)))
 
@@ -419,3 +419,7 @@ corr_image = load_image('app/correlation_vs_distance.png')
 st.image(corr_image)
 
 st.write('Looking at the figure, both the a-priori scores and the derived a-posteriori ones exhibit a predictable correlation decrease with the increases in distance from the epicenter, aligning with the expected lower impact of the earthquake. However, our a-posteriori vulnerability score consistently maintains a notably higher correlation with the damage level, even at large distances. This trend not only underlines the robustness of our approach but also highlights its predictive power in assessing earthquake vulnerability across varying proximities to epicenters.')
+
+st.title('Credits')
+st.write('This app was developed by Guglielmo Ferranti, a PhD student of Complex Systems at the Department of Physics and Astronomy “Ettore Majorana” in the University of Catania, Italy.')
+st.write('Special credits to the Eucentre Foundation for providing the dataset used for training the models in this app.')
