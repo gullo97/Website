@@ -273,7 +273,7 @@ st.image('app/'+model_name+'/report.png')
 st.write('We can see the model structure here, noting that the dataset and model are small enough to pass the whole validation dataset (containing 11628 samples) through the model at once.')
 
 if model_name == 'Harmonic Mapper':
-    st.write('The Harmonic Mapper neural network augments the numeric values in the data by calculating the squares, cubes and a selectable number of sine and cosine transformations of the coordinates and distances from epicenters, for each building. The parameters (phase, amplitude, omega and bias) of these sin/cos transformations are learned by the model during training to allow the model to better learn the shape of the vulnerability map.')
+    st.write('The Harmonic Mapper neural network augments the numeric values in the data by calculating the squares, cubes and a selectable number of sine and cosine transformations of the coordinates and distances from epicenters, for each building. The parameters (phase, amplitude, omega and bias) of these sin/cos transformations are learned during training to allow the model to better extract the shape of the vulnerability map.')
 elif model_name == 'Simple NN':
     st.write('The Simple NN model is a simple fully connected neural network with 2 hidden layers of 128 and 64 neurons respectively. The input is a one-hot vector of length 81 and the output is a vector of length 4, representing the probabilities for a building to expect each of the 4 damage levels.')
 # open svg file
