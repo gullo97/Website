@@ -281,9 +281,6 @@ with open('app/'+model_name+'/model.onnx.svg', 'rb') as f:
     svg = f.read()
     # st.write(svg.decode('utf-8'))
     st.image(svg.decode('utf-8'))
-    
-
-
 
 
 st.title('Vulnerability Map')
