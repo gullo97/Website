@@ -292,6 +292,7 @@ if model_name == 'Simple NN':
     st.write('Note: Select "Harmonic Mapper" in the model selector (above in this page) for the best results.')
 
 st.write('We interpolate a continous vulnerability map by taking a diverse sample of buildings from the dataset and ask the model to predict the damage of these "dummy" buildings if they were positioned at each point on a grid. The grid is then colored according to the average damage predicted by the model. The grid is normalized to have values between 0 and 1, where 0 is the minimum vulnerability and 1 is the maximum. This approach aims to average out the effect of all possible feature combination and extract the weight assigned by the model to just the position of a building.')
+
 # map_html = load_vulnerability_map_and_show(model_name=model_name) # <----------- Plotly map
 # # Use the Streamlit components to render HTML
 # components.html(map_html, height=500) 
@@ -305,7 +306,10 @@ eq_df = event_df[['lat_epicentro', 'lon_epicentro', 'magnitudo_mw']]
 fig = plot_on_map_plotly(grid, min_lat, max_lat, min_lon, max_lon, eq_df, df, n_samples=1000, zoom_factor=8, zoom_center=(13.4,42.3))
 st.write(fig)
 
-st.write('The reason we are intrested in the vulnerability map is that we want the model to be able to distinguish the intrinsic vulnerability of building features from their position relative to an earthquake, thus using the position as a bias for prediction. The better the model is at interpolating a map (and maintaning satisfactory F1 score on validation), the more confident we are in its ability to evaluate intrinsic vulnerability of specific features.')
+if model_name == 'Simple NN':
+    st.write('The vulnerability map shows that the "Simple NN" has trouble fitting the complex shape of the seismic event. This is because the model is not large enough to learn the shape of the map and instead learns to predict the damage level based only on the features of the building. This causes the model to overfit the data and is a problem for the "A-Posteriori" vulnerability score, which is meant to be used on new buildings and locations.')
+
+st.write('The Harmonic Mapper model is able to learn a detailed vulnerability map: this allows to assign the correct portion of vulnerability to the coordinates of a building and is thus the better choice for A-Posteriori vulnerability estimation. This capability is critical because we want the model to be able to distinguish the intrinsic vulnerability of building features from their position relative to an earthquake, thus using the position as a bias for prediction. The better the model is at interpolating a map (and maintaning satisfactory F1 score on validation), the more confident we are in its ability to evaluate intrinsic vulnerability of specific features.')
 
 # ########################################################
 # # Assuming 'fig' is your Plotly figure object
