@@ -409,7 +409,7 @@ st.markdown("""
 2. **Model Predictions**: These dummy buildings are fed into our Neural Network (and Random Forest) models, which then predict damage, considering the static feature as a key variable.
 3. **Derivation of A-Posteriori Vulnerability Score**: By examining the damage predictions across dummy buildings with the constant feature, we derive an average damage score, representing the vulnerability attributed to that feature (like having two floors).
 """, unsafe_allow_html=True)
-st.write('The following plot shows the A-Posteriori vulnerability score for each feature. The higher the score, the more vulnerable the feature is.')
+st.write('The following plot shows the A-Posteriori vulnerability score for each feature calculated by the Harmonic Mapper ANN (in red), a Random Forest Classifier (in green) and their average (blue). The higher the score, the more vulnerable the feature is.')
 
 scores_image = load_image('app/a_posteriori_scores.png')
 st.image(scores_image)
