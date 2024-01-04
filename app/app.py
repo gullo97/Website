@@ -248,11 +248,11 @@ def create_one_hot_from_selections(df, selections, latitude, longitude):
     return one_hot
 
 st.title('Machine learning for earthquake damage prediction and vulnerability assessment')
-st.write('This app is a demo of the machine learning models developed for the paper "Seismic Vulnerability Assessment at Urban Scale by Means of Machine Learning Techniques" by Guglielmo Ferranti et. al, currently under review for publication on MDPI Buildings. Here, we show the "Simple NN" model used in the paper and build upon that to improve performance and interpretability with the "Harmonic Mapper" model.')
+st.write('This app is a demo of the machine learning models developed for the paper "Seismic Vulnerability Assessment at Urban Scale by Means of Machine Learning Techniques" by Guglielmo Ferranti et. al, currently under review for publication on MDPI Buildings also available at https://www.preprints.org/manuscript/202312.1304/v2. Here, we explain the "Simple NN" model used in the paper and build upon it to improve performance and interpretability with the "Harmonic Mapper" model.')
 
 st.write('The study leverages data from the 2009 L\'Aquila earthquake in Italy to train a machine learning model to predict the damage level of a building given its characteristics, position and the earthquake characteristics. The model is at first used to interpolate a vulnerability map tailored to the seismic event and then, using a similar approach, to extrapolate an "A-Posteriori" vulnerability score for each building feature that minimizes its dependency on the specific seismic event and can, in principle, be useful outside of the specific event studied.')
 df = load_data()
-st.write('The dataframe contains a mix of categorical and numerical features. The categorical features are one-hot encoded to give a total of 81 features for each building. Here we report a small sample of the dataframe that originally contains about 60000 samples')
+st.write('The dataset developed by Eucentre (European Center for Training and Research in Seismic Engineering, http://egeos.eucentre.it/danno_osservato/web/danno_osservato) contains a mix of categorical and numerical features. The categorical features are one-hot encoded to give a total of 81 features for each building. Here we report a synthetic sample of the dataframe that originally contains about 60000 samples')
 st.write(df.head())
 # st.write('Sample size: ' + str(len(df)))
 
