@@ -426,5 +426,5 @@ st.image(corr_image)
 st.write('Looking at the figure, both the a-priori scores and the derived a-posteriori ones exhibit a predictable correlation decrease with the increases in distance from the epicenter, aligning with the expected lower impact of the earthquake. However, our a-posteriori vulnerability score consistently maintains a notably higher correlation with the damage level, even at large distances. This trend not only underlines the robustness of our approach but also highlights its predictive power in assessing earthquake vulnerability across varying proximities to epicenters.')
 
 st.title('Credits')
-st.write('This app was developed by Guglielmo Ferranti, a PhD student of Complex Systems at the Department of Physics and Astronomy “Ettore Majorana” in the University of Catania, Italy.')
+st.write('This app and all methodologies showcased in it were developed by Guglielmo Ferranti, a PhD student of Complex Systems at the Department of Physics and Astronomy “Ettore Majorana” in the University of Catania, Italy.')
 st.write('Special credits to the Eucentre Foundation for providing the dataset used for training the models in this app.')
