@@ -292,6 +292,7 @@ if model_name == 'Simple NN':
     st.write('Note: Select "Harmonic Mapper" in the model selector (above in this page) for the best results.')
 
 st.write('We interpolate a continous vulnerability map by taking a diverse sample of buildings from the dataset and ask the model to predict the damage of these "dummy" buildings if they were positioned at each point on a grid. The grid is then colored according to the average damage predicted by the model. The grid is normalized to have values between 0 and 1, where 0 is the minimum vulnerability and 1 is the maximum. This approach aims to average out the effect of all possible feature combination and extract the weight assigned by the model to just the position of a building.')
+st.write('The map also shows a very small sample of original buildings coordinates (colored by damage level) and the epicenters of the earthquake (blue dots). This data is in aggregate form and does not allow to identify specific buildings or their features.')
 
 # map_html = load_vulnerability_map_and_show(model_name=model_name) # <----------- Plotly map
 # # Use the Streamlit components to render HTML
