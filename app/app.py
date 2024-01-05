@@ -258,7 +258,7 @@ st.write(df.head())
 # st.write('Sample size: ' + str(len(df)))
 
 event_df = load_event_data()
-st.write('The data is augmented by precalculating the distance of each building from the main epicenters of the earthquake.')
+st.write('Compared to the original dataset, our data is augmented by precalculating the distance of each building from the main epicenters of the earthquake.')
 st.write(event_df.head())
 
 st.title('Model selection and performance')
@@ -375,8 +375,6 @@ longitude = pag_col2.slider('Longitude', min_value=12.0, max_value=15.0, value=1
 ###########################################################################################
 
 # st.write(selections)
-
-
 
 one_hot = create_one_hot_from_selections(df, selections, latitude, longitude)
 # st.write('This is the one-hot vector for debugging')
